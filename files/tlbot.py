@@ -52,21 +52,6 @@ async def echo_private(update: Update, context: ContextTypes.DEFAULT_TYPE):
         crud.save_message(0, user_msg, direction="User")
         bot_res = chatbot.get_chatbot_response(user_msg, 0)
 
-        ## worflow reminder
-        if len(bot_res) == 2:
-            print("detected workflow reminder")
-            print(bot_res[0])
-            bot_res = bot_res[0]
-            exec(bot_res)
-
-            context.job_queue.run_custom(callback_alarm, job_kwargs, data=data, chat_id=update.effective_chat.id)
-
-# New things for job store testing
-        scheduler = context.job_queue.scheduler
-        url = 'sqlite:///database/database.sqlite'
-        scheduler.add_jobstore('sqlalchemy', url=url)
-        scheduler.add_job(callback_alarm, 'date', run_date=(datetime.datetime.now()+ datetime.timedelta(days=10)), args=['hello'])
-
         crud.save_message(0, bot_res, direction="Assistant")
 
     except Exception as e:
