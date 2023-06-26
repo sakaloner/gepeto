@@ -1,0 +1,90 @@
+2023-06-09 18:48:02,186 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getMe "HTTP/1.1 200 OK"
+2023-06-09 18:48:02,348 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/deleteWebhook "HTTP/1.1 200 OK"
+2023-06-09 18:48:02,351 - INFO - Application started
+2023-06-09 18:48:13,119 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:48:23,290 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:48:33,457 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:48:43,630 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:48:51,493 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:48:51,505 - ERROR - error Error creating backref 'saved_data' on relationship 'SavedData.tags': property of that name exists on mapper 'Mapper[Tag(tag)]'
+Traceback (most recent call last):
+  File "/home/andres/coding/bot/files/tlbot.py", line 67, in echo_private
+    crud.save_message(0, user_msg, direction="User")
+  File "/home/andres/coding/bot/files/database/crud.py", line 22, in save_message
+    msg = models.Message_history(
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 4, in __init__
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/state.py", line 561, in _initialize_instance
+    manager.dispatch.init(self, args, kwargs)
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/event/attr.py", line 487, in __call__
+    fn(*args, **kw)
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4367, in _event_on_init
+    instrumenting_mapper._check_configure()
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2362, in _check_configure
+    _configure_registries({self.registry}, cascade=True)
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4177, in _configure_registries
+    _do_configure_registries(registries, cascade)
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 4219, in _do_configure_registries
+    mapper._post_configure_properties()
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/mapper.py", line 2379, in _post_configure_properties
+    prop.init()
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/interfaces.py", line 549, in init
+    self.do_init()
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 1639, in do_init
+    self._generate_backref()
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/sqlalchemy/orm/relationships.py", line 2072, in _generate_backref
+    raise sa_exc.ArgumentError(
+sqlalchemy.exc.ArgumentError: Error creating backref 'saved_data' on relationship 'SavedData.tags': property of that name exists on mapper 'Mapper[Tag(tag)]'
+2023-06-09 18:48:51,510 - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/telegram/ext/_application.py", line 1124, in process_update
+    await coroutine
+  File "/home/andres/coding/bot/env/lib/python3.11/site-packages/telegram/ext/_handler.py", line 141, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/andres/coding/bot/files/tlbot.py", line 74, in echo_private
+    await retry_on_error(context.bot.send_message, 10, 3, chat_id=update.effective_chat.id, text=bot_res)
+                                                                                                 ^^^^^^^
+UnboundLocalError: cannot access local variable 'bot_res' where it is not associated with a value
+2023-06-09 18:49:01,686 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:49:12,288 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:49:22,469 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:49:33,408 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:49:43,578 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:49:53,837 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:50:04,021 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:50:14,196 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:50:24,373 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:50:34,548 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:50:44,736 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:50:54,905 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:51:05,072 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:51:15,855 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:51:26,026 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:51:36,192 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:51:46,361 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:51:56,528 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:52:06,693 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:52:16,864 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:52:27,043 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:52:37,213 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:52:47,385 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:52:57,558 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:53:07,722 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:53:17,892 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:53:28,062 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:53:38,230 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:53:48,405 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:53:58,575 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:54:08,747 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:54:18,924 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:54:29,102 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:54:39,273 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:54:49,970 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:55:00,159 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:55:10,681 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:55:20,855 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:55:31,024 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:55:41,203 - INFO - HTTP Request: POST https://api.telegram.org/bot931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418/getUpdates "HTTP/1.1 200 OK"
+2023-06-09 18:55:44,507 - INFO - Application is stopping. This might take a moment.
+2023-06-09 18:55:44,507 - INFO - Application.stop() complete
