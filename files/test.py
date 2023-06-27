@@ -5,9 +5,8 @@ Thids is the tool for saving things to the database
 import json
 import os
 import re
-from database import crud
-from utils.functions import parse_json
 import openai
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()

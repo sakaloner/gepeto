@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "gepeto"
+version = "0.1.0"
+description = "a telegram bot LLM thingy"
+authors = ["Andres Velasquez <andresf40y0@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+python-telegram-bot = {extras = ["job-queue"], version = "^20.3"}
+python-dotenv = "^1.0.0"
+openai = "^0.27.8"
+sqlalchemy = "^2.0.17"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
