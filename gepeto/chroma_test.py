@@ -19,15 +19,27 @@ chroma_client = chromadb.Client(Settings(
     chroma_db_impl="duckdb+parquet",
     persist_directory="./database/chroma/"
 ))
-collection = chroma_client.create_collection(name="new_col", embedding_function=default_ef)
 
-collection.add(
-    documents=["this is a message for all the people on earth", "i am feeling kinda sad right now uwu"],
-    metadatas=[{"source": "my_source"}, {"source": "my_source"}],
-    ids=["id1", "id2"]
+res = crud.get_message_history(0, 'week')
+
+messages = [x['message'] for x in res]
+ids = [str(x['id']) for x in res]
+directions = [{'role':x['direction']} for x in res]
+
+#collection = chroma_client.create_collection(name="message3", embedding_function=default_ef)
+
+
+
+col = chroma_client.get_collection('message3')
+col.add(
+    documents=messages,
+    metadatas=directions,
+    ids=ids,
 )
-results = collection.query(
-    query_texts=["lets just work together for a better future"],
-    n_results=1
+results = col.query(
+    query_texts=["who the fuck are you"],
+    where={'role':'User'},
+    n_results=10
 )
+
 print(results)

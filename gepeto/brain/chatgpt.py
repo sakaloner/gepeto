@@ -51,7 +51,7 @@ class ChatBot:
     if response.get("function_call"):
         f_name = response["function_call"]["name"]
         f_args = json.loads(response["function_call"]["arguments"])
-        func_res = function_caller(f_name, f_args)
+        func_res = function_caller(self, f_name, f_args)
         sys_prompt = "this is the response of the function, show the user this info in the meidum its best for them "
         self.interaction_history.append({"role":"system","content":sys_prompt+str(func_res)})
         log(f"function_res {func_res}: {f_name} called with args:{f_args}")

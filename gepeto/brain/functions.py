@@ -14,12 +14,12 @@ model_functions = [
                         "type": "string",
                         "description": "the specific date to send the message"
                     },
-                    "message": {
+                    "message_prompt": {
                         "type": "string",
-                        "description": "the message to send"
+                        "description": "the goal of the message"
                     }
                 },
-                "required": ["run_date","message"],
+                "required": ["run_date","message_prompt"],
             },
         },
         {
@@ -28,9 +28,9 @@ model_functions = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "message": {
+                    "message_prompt": {
                         "type": "string",
-                        "description":"the message to send"
+                        "description":"What is the message for?"
                     },
                     "weeks": {
                         "type": "number",
@@ -57,7 +57,7 @@ model_functions = [
                         "description":"latest possible date to trigger sending of the message"
                     },
                 },
-                "required": ['message'],
+                "required": ['message_prompt'],
             },
         },
     ### data base saving
@@ -178,12 +178,15 @@ model_functions = [
         },
     ]
 
-def function_caller(f_name, f_args):
-    if  f_name == "set_reminder_interval":
+def function_caller(chatbot, f_name, f_args):
+    if  "set_reminder" in f_name:
+        type_reminder = 'interval' if f_name == 'set_reminder_interval' else 'date'
+        message = f_args.pop('message_prompt')
+        res = chatbot.get_chatbot_response(message, 0)
+
         scheduler = create_scheduler()
-        message = f_args.pop('message')
         scheduler.start()
-        scheduler.add_job(send_message, 'interval', **f_args, args=[message])
+        scheduler.add_job(send_message, type_reminder, **f_args, args=[res])
         return 1
     if f_name == "get_message_history":
         f_args["user_id"] = 0
