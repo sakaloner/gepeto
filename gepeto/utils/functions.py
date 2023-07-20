@@ -16,26 +16,39 @@ async def retry_on_error(func, wait=0.1, retry=2, *args, **kwargs):
             if retry != 0 and i == retry:
                 break
 
-def start_logging(fname:str, priority) -> Callable:
-    """ """
+def start_logging(fname: str, priority, logname="main", also_log_to=None) -> callable:
     timestamp = datetime.datetime.now().strftime('%m-%d-%h')
-
     os.makedirs('logs', exist_ok=True)
-    # Configure the logging module
-    logging.basicConfig(
-        filename=f'logs/main_{timestamp}',  # Specify the filename of the log file
-        level=priority,     # Set the logging level to DEBUG, which logs all messages
-        format=f'{fname} %(asctime)s %(levelname)s: %(message)s',  # Define the format of the log messages
-        datefmt=r'%m-%d-%h',
-    )
-    # create the logging function
-    def log (msg, prio='info'):
+
+    # Create a custom logger
+    logger = logging.getLogger(logname)
+    logger.setLevel(priority)
+
+    # Create handlers
+    handler = logging.FileHandler(f'logs/{logname}_{timestamp}')
+    handler.setLevel(priority)
+
+    # Create formatters and add it to handlers
+    formatter = logging.Formatter(f'{fname} %(asctime)s %(levelname)s: %(message)s', datefmt='%m-%d-%h')
+    handler.setFormatter(formatter)
+
+    # Add handlers to the logger
+    logger.addHandler(handler)
+
+    # If there's a logger to also log to, get its handler and add it to this logger
+    if also_log_to:
+        also_log_to_handlers = logging.getLogger(also_log_to).handlers
+        for also_log_to_handler in also_log_to_handlers:
+            logger.addHandler(also_log_to_handler)
+
+    # Create the logging function
+    def log(msg, prio='info'):
         if prio == 'info':
             print(msg)
         types = {
-            'debug': logging.debug,
-            'info': logging.info,
-            'error': logging.error,
+            'debug': logger.debug,
+            'info': logger.info,
+            'error': logger.error,
         }
         types[prio](msg)
     log(f'started {fname}')
