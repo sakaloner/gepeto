@@ -28,8 +28,6 @@ directions = [{'role':x['direction']} for x in res]
 
 #collection = chroma_client.create_collection(name="message3", embedding_function=default_ef)
 
-
-
 col = chroma_client.get_collection('message3')
 col.add(
     documents=messages,

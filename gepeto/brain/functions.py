@@ -60,6 +60,27 @@ model_functions = [
                 "required": ['message_prompt'],
             },
         },
+        ## chroma retrieve
+        {
+            "name": "query_database",
+            "description": "retrieve data from the embeddings database",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query_string": {
+                        "type": "string",
+                        "description":"similar string to the data we are looking for"
+                    },
+                    "direction": {
+                        "type": "string",
+                        "description":"which entity is the data associated to",
+                        "enum": ["assistant","user"]
+                    },
+                },
+                "required": ["query_string"],
+            },
+        },]
+old_functions = [
     ### data base saving
         {
             "name": "save_saved_data",
@@ -188,6 +209,34 @@ def function_caller(chatbot, f_name, f_args):
         scheduler.start()
         scheduler.add_job(send_message, type_reminder, **f_args, args=[res])
         return 1
+    elif "query_database" in f_name:
+        res = None
+        if chatbot.accessType == 'public':
+            res = chatbot.chroma.public_col.query(
+                query_texts=[f_args["query_string"]],
+                where=None,
+                n_results=10,
+            )
+        else:
+            res = chatbot.chroma.priv_col.query(
+                query_texts=[f_args["query_string"]],
+                where=None,
+                n_results=10,
+            )
+        ## make the model choose for the important stuff
+        cleaned_res = list(zip(res['ids'], res['documents']))
+        paralel = chatbot.interaction_history
+        system_msg = """
+        This is the response from the function, decide which entries are
+        reelvant for the user request
+        """
+        paralel.append({"role":"system","content":system_msg+str(cleaned_res)})
+        return paralel
+        bot_res = chatbot.call_model(function_calling="none", history=paralel)
+        return bot_res["content"]
+
+
+    '''
     if f_name == "get_message_history":
         f_args["user_id"] = 0
         ## TODO
@@ -198,3 +247,4 @@ def function_caller(chatbot, f_name, f_args):
         f_args["user_id"] = 0
         function = getattr(crud, f_name)
         return function(**f_args)
+    '''

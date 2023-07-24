@@ -9,6 +9,6 @@ nigro = [
 ]
 chatbot = ChatBot(nigro)
 
-last_msg = "so tell me more about brooklin"
-bot_res = chatbot.get_chatbot_response(last_msg, 0)
+last_msg = "Please show me the things in the database related to 'swag hello'"
+bot_res = chatbot.get_chatbot_response(last_msg, 0, 'public')
 print(bot_res)
