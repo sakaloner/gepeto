@@ -8,8 +8,10 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 from datetime import datetime, timedelta
 
+from dotenv import load_dotenv
 
-token = '931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418'
+load_dotenv()
+token = os.getenv("TLBOT_API_KEY")
 chat_id = '871787184'
 
 def create_scheduler():

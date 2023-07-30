@@ -13,6 +13,10 @@ import pytz
 from tools.reminders import create_scheduler, send_message
 from test_histories import testing
 
+from dotenv import load_dotenv
+
+load_dotenv()
+tlbot_api_key = os.getenv("TLBOT_API_KEY")
 loga = start_logging("tlbot",logging.INFO, "main")
 
 chatbot = ChatBot()
@@ -89,7 +93,7 @@ async def record_all_messages(update: Update, context: ContextTypes.DEFAULT_TYPE
         f.write(f"\nChat ID: {chat_id}, Message ID: {msg_id}, Text: {text}")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token('931609591:AAHldMP8h6PIAzMkMpLE-NKJIUY3ljX3418').build()
+    application = ApplicationBuilder().token(tlbot_api_key).build()
     sc = create_scheduler()
     sc.start()
     ## remove jobs
