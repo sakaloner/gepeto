@@ -12,6 +12,7 @@ import pytz
 
 from tools.reminders import create_scheduler, send_message
 from test_histories import testing
+import os
 
 from dotenv import load_dotenv
 
